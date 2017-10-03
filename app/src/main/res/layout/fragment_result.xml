@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/result"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="25"
+            android:background="@drawable/result_bg"
+            android:layout_centerHorizontal="true"
+            android:textSize="55sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textColor="#26c6da"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bmiClass"
+            android:layout_below="@+id/result"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="calcualting"
+            android:fontFamily="serif"
+            android:textColor="#26c6da"
+            android:layout_marginBottom="15dp"
+            android:textSize="25sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cfcfcf"
+            android:layout_below="@+id/bmiClass"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_below="@+id/bmiClass"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightInfo"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp"
+                android:text="weight : "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/heightInfo"
+                android:textSize="20sp"
+                android:text="height : "/>
+        </LinearLayout>
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:contentPaddingLeft="10dp"
+        >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight : "
+        android:id="@+id/weightLabel"
+        android:layout_marginRight="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="95"
+        android:layout_toRightOf="@+id/weightLabel"
+        android:id="@+id/weighthistory"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Height : "
+        android:id="@+id/heightLabel"
+        android:layout_below="@+id/weightLabel"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="185"
+        android:layout_below="@+id/weighthistory"
+        android:id="@+id/heightHistory"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/heightLabel"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age      : "
+        android:id="@+id/ageLable"
+        android:layout_below="@+id/heightLabel"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15"
+        android:id="@+id/ageHistory"
+        android:layout_below="@+id/heightHistory"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/ageLable"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Result   : "
+        android:id="@+id/resultlabel"
+        android:layout_below="@+id/ageLable"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27.5"
+        android:id="@+id/resultHistory"
+        android:layout_below="@+id/ageHistory"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/ageLable"
+        />
+    
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/delete"
+        android:scaleType="fitXY"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/delete"
+        android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/date"
+            android:text="01-10-2017"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"/>
+
+    </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

@@ -17,21 +17,6 @@
          />
 
 
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/Weight"
-        android:drawableLeft="@drawable/ic_edit"
-        android:hint="weight"
-        android:textColor="#fff"
-        android:inputType="number"
-        android:gravity="center"
-        android:textColorHint="#fff"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/img3"
-        android:layout_centerHorizontal="true"
-        />
-
 
 
 
@@ -45,7 +30,7 @@
         android:inputType="number"
         android:gravity="center"
         android:textColorHint="#fff"
-        android:layout_below="@+id/Weight"
+        android:layout_below="@+id/img3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
     </RelativeLayout>

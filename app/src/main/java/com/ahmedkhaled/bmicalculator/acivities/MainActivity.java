@@ -1,15 +1,13 @@
-package com.ahmedkhaled.bmicalculator;
+package com.ahmedkhaled.bmicalculator.acivities;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.ahmedkhaled.bmicalculator.CustomViewPager;
+import com.ahmedkhaled.bmicalculator.adapters.IntroPagerAdapter;
+import com.ahmedkhaled.bmicalculator.R;
+import com.ahmedkhaled.bmicalculator.backend.Setting;
 import com.ahmedkhaled.bmicalculator.fragments.FragmentThree;
 import com.ahmedkhaled.bmicalculator.fragments.FragmentTwo;
 
@@ -19,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements FragmentTwo.OnDat
 
     public CustomViewPager viewPager;
     Setting setting;
-    String age,gender;
+    String weight,hight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,31 +30,28 @@ public class MainActivity extends AppCompatActivity implements FragmentTwo.OnDat
             startActivity(intent);
             finish();
         }
-        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
-        viewPager=(CustomViewPager) findViewById(R.id.viewpager);
+        CircleIndicator indicator =  findViewById(R.id.indicator);
+        viewPager= findViewById(R.id.viewpager);
         IntroPagerAdapter introPagerAdapter=new IntroPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(introPagerAdapter);
         indicator.setViewPager(viewPager);
 
     }
 
-    @Override
-    public void onDataCollectedListener(String age, String gender) {
-        this.age=age;
-        this.gender=gender;
-        Log.d("TAG","result  "+gender+"  "+age );
-    }
-
-
 
 
     @Override
-    public void onSecondDataCollectedListener(String weight, String height) {
+    public void onSecondDataCollectedListener(String height) {
         Intent intent=new Intent(getApplicationContext(),Home.class);
         setting.setFirstTIme(false);
         intent.putExtra("firstTime","firstTime");
-        setting.saveData(age,gender,weight,height);
+        setting.saveData(weight,height);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onDataCollectedListener(String weight) {
+        this.weight=weight;
     }
 }

@@ -1,21 +1,21 @@
 package com.ahmedkhaled.bmicalculator.fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.ahmedkhaled.bmicalculator.CustomViewPager;
-import com.ahmedkhaled.bmicalculator.MainActivity;
+import com.ahmedkhaled.bmicalculator.acivities.MainActivity;
 import com.ahmedkhaled.bmicalculator.R;
 
 /**
@@ -23,58 +23,33 @@ import com.ahmedkhaled.bmicalculator.R;
  */
 
 public class FragmentTwo extends Fragment  {
-    EditText Age;
-    String age;
-    String gender="male";
-    boolean scrolling=false;
+    EditText weight;
+    String Weight;
     CustomViewPager viewPager;
     OnDataCollectedListener onDataCollectedListener;
 
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         onDataCollectedListener= (OnDataCollectedListener) getActivity();
         final View view=inflater.inflate(R.layout.fragment_two,container,false);
-        Age= (EditText) view.findViewById(R.id.Age);
-        RadioButton male= (RadioButton) view.findViewById(R.id.male);
-        final RadioButton female= (RadioButton) view.findViewById(R.id.female);
         viewPager=((MainActivity)getActivity()).viewPager;
-        male.setChecked(true);
-
-        male.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        weight=view.findViewById(R.id.weight);
+        weight.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                viewPager.setEnabled(true);
-                if (b){
-                    gender="male";
-                }
-            }
-        });
-
-        female.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                viewPager.setEnabled(true);
-                if (b){
-                    gender="female";
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-        });
 
-        Age.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange(View view, boolean b) {
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 viewPager.setEnabled(true);
-
             }
-        });
-        Age.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View view) {
-                viewPager.setEnabled(true);
+            public void afterTextChanged(Editable editable) {
 
             }
         });
@@ -83,9 +58,6 @@ public class FragmentTwo extends Fragment  {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (position==1){
-                scrolling=true;
-                }
             }
 
             @Override
@@ -95,18 +67,19 @@ public class FragmentTwo extends Fragment  {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                if (state==ViewPager.SCROLL_STATE_DRAGGING ||scrolling){
+                if (state==ViewPager.SCROLL_STATE_DRAGGING ){
                     if (viewPager.getCurrentItem()==1) {
-
                         if (isDataCompleted()){
                             viewPager.setEnabled(true);
                             Log.d("TAG","data is completed");
-                            onDataCollectedListener.onDataCollectedListener(age,gender);
+                            onDataCollectedListener.onDataCollectedListener(Weight);
                         }else {
-                            Toast.makeText(getActivity(),"please enter gender & age ",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),"please enter weight ",Toast.LENGTH_LONG).show();
                             viewPager.setEnabled(false);
                         }
                     }
+                }else {
+                    viewPager.setEnabled(true);
                 }
             }
         });
@@ -115,16 +88,13 @@ public class FragmentTwo extends Fragment  {
     }
 
     boolean isDataCompleted(){
-        age=Age.getText().toString();
-        if (age.length()>0&&gender.length()>0){
-            return true;
-        }
-        return false;
+        Weight= weight.getText().toString();
+        return Weight.length() > 0;
     }
 
 
 
     public interface OnDataCollectedListener {
-        void onDataCollectedListener(String age,String gender);
+        void onDataCollectedListener(String weight);
     }
 }

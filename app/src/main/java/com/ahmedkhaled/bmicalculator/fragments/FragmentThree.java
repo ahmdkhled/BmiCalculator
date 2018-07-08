@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ahmedkhaled.bmicalculator.CustomViewPager;
-import com.ahmedkhaled.bmicalculator.MainActivity;
+import com.ahmedkhaled.bmicalculator.acivities.MainActivity;
 import com.ahmedkhaled.bmicalculator.R;
 
 /**
@@ -21,8 +22,8 @@ import com.ahmedkhaled.bmicalculator.R;
 
 public class FragmentThree extends Fragment  {
 
-    EditText Height,Weight;
-    String height,weight;
+    EditText Height;
+    String height;
     CustomViewPager viewPager;
     OnDataCollectedListener onDataCollectedListener;
     @Nullable
@@ -30,8 +31,7 @@ public class FragmentThree extends Fragment  {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         onDataCollectedListener= (OnDataCollectedListener) getActivity();
         final View view=inflater.inflate(R.layout.fragment_three,container,false);
-        Weight= (EditText) view.findViewById(R.id.Weight);
-        Height = (EditText) view.findViewById(R.id.Height);
+        Height = view.findViewById(R.id.Height);
         viewPager=((MainActivity)getActivity()).viewPager;
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -50,7 +50,7 @@ public class FragmentThree extends Fragment  {
                 if (state==ViewPager.SCROLL_STATE_DRAGGING){
                     if (viewPager.getCurrentItem()==2) {
                         if (isDataCompleted()){
-                            onDataCollectedListener.onSecondDataCollectedListener(weight, height);
+                            onDataCollectedListener.onSecondDataCollectedListener(height);
                         }else {
                             viewPager.setEnabled(false);
                             Toast.makeText(getActivity(),"please enter weight & height ",Toast.LENGTH_SHORT).show();
@@ -60,16 +60,21 @@ public class FragmentThree extends Fragment  {
             }
         });
 
-        Weight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+        Height.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View view, boolean b) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 viewPager.setEnabled(true);
             }
-        });
-        Height.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
             @Override
-            public void onFocusChange(View view, boolean b) {
-                viewPager.setEnabled(true);
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
@@ -79,18 +84,14 @@ public class FragmentThree extends Fragment  {
 
 
     boolean isDataCompleted(){
-        weight=Weight.getText().toString();
         height = Height.getText().toString();
-        if (weight.length()>0&& height.length()>0){
-            return true;
-        }
-        return false;
+        return height.length() > 0;
     }
 
 
 
     public interface OnDataCollectedListener {
-        void onSecondDataCollectedListener(String weight,String height);
+        void onSecondDataCollectedListener(String height);
 
     }
 

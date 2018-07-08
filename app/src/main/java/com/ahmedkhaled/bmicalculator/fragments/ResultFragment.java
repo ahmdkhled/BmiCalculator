@@ -1,23 +1,19 @@
 package com.ahmedkhaled.bmicalculator.fragments;
 
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ahmedkhaled.bmicalculator.BmiCalculator;
-import com.ahmedkhaled.bmicalculator.HistoryDatabase;
-import com.ahmedkhaled.bmicalculator.Home;
+import com.ahmedkhaled.bmicalculator.backend.HistoryDatabase;
 import com.ahmedkhaled.bmicalculator.R;
-import com.ahmedkhaled.bmicalculator.Setting;
+import com.ahmedkhaled.bmicalculator.backend.Setting;
 
 
 /**
@@ -51,7 +47,7 @@ public class ResultFragment extends Fragment {
 
         Intent intent = getActivity().getIntent();
         if (intent != null && intent.getStringExtra("firstTime") != null && firstTime) {
-            animateMe(0, (int) bmiCalculator.getBmi());
+            animateMe((int) bmiCalculator.getBmi());
             firstTime = false;
         } else {
             showResult();
@@ -62,9 +58,9 @@ public class ResultFragment extends Fragment {
     }
 
 
-    void animateMe(final int start, final int end) {
+    void animateMe(final int end) {
         handler = new Handler();
-        progress = start;
+        progress = 0;
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -94,7 +90,7 @@ public class ResultFragment extends Fragment {
     void saveData() {
         String finalResult = String.format("%.1f", bmiCalculator.getBmi());
 
-        historyDatabase.insertData(setting.getWeight(), setting.getHeight(), setting.getAge(), finalResult);
+        historyDatabase.insertData(setting.getWeight(), setting.getHeight(), finalResult);
 
     }
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Bmi Calculator</string>
+    <string name="app_icon">app icon</string>
+    <string name="enter_your_weight">enter your weight</string>
 </resources>

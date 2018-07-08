@@ -1,8 +1,8 @@
 package com.ahmedkhaled.bmicalculator;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
+
+import com.ahmedkhaled.bmicalculator.backend.Setting;
 
 /**
  * Created by Ahmed Khaled on 9/25/2017.

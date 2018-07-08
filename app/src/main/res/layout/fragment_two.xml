@@ -13,7 +13,8 @@
         android:id="@+id/img2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/app_icon" />
 
     
     <EditText
@@ -25,47 +26,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:drawableLeft="@drawable/ic_edit"
-        android:id="@+id/Age"
-        android:hint="enter your age"
+        android:drawableStart="@drawable/ic_edit"
+        android:id="@+id/weight"
+        android:hint="@string/enter_your_weight"
         android:textColorHint="#fff"
         android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:gravity="center"
-
         />
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/radioGroup"
-        android:layout_below="@+id/Age"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:divider="@drawable/ic_devider_line"
-        android:showDividers="middle"
-        >
-
-
-        <RadioButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/male"
-            android:button="@drawable/radio_male"
-            android:layout_alignLeft="@+id/radioGroup"
-            android:layout_alignStart="@+id/radioGroup" />
-
-
-        <RadioButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/female"
-            android:button="@drawable/radio_female"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/Age"
-            android:layout_toRightOf="@id/male"
-            />
-
-    </RadioGroup>
 
 
 

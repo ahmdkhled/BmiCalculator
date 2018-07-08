@@ -1,4 +1,4 @@
-package com.ahmedkhaled.bmicalculator;
+package com.ahmedkhaled.bmicalculator.backend;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,29 +17,22 @@ public class Setting  {
         editor=preferences.edit();
     }
 
-    void setFirstTIme(boolean state){
+    public void setFirstTIme(boolean state){
         editor.putBoolean("IsFirstTime",state);
         editor.commit();
     }
 
-    public void saveData(String age, String gender, String weight, String height){
-        editor.putString("AGE",age);
-        editor.putString("GENDER",gender);
+    public void saveData(String weight, String height){
         editor.putString("WEIGHT",weight);
         editor.putString("HEIGHT",height);
         editor.commit();
     }
 
-    boolean isFirstTime(){
+    public boolean isFirstTime(){
         return preferences.getBoolean("IsFirstTime",true);
     }
 
-    public String getAge(){
-        return preferences.getString("AGE","error");
-    }
-    public String getGender(){
-        return preferences.getString("GENDER","error");
-    }
+
     public String getWeight(){
         return preferences.getString("WEIGHT","error");
     }

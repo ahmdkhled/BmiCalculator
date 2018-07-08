@@ -1,9 +1,11 @@
-package com.ahmedkhaled.bmicalculator;
+package com.ahmedkhaled.bmicalculator.backend;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.ahmedkhaled.bmicalculator.model.history;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,7 +19,7 @@ public class HistoryDatabase extends SQLiteOpenHelper {
     private static final int DB_VERSION=1;
     private static final String DB_NAME="bmi";
     private static final String  create_sql="create table history (id INTEGER PRIMARY KEY ,weight VARCHAR(255),height VARCHAR(255)," +
-                                                "age VARCHAR(255),result VARCHAR(255),date VARCHAR(255))";
+                                                "result VARCHAR(255),date VARCHAR(255))";
     private static final String drop_sql="drop table if exists history";
 
 
@@ -36,10 +38,10 @@ public class HistoryDatabase extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void insertData(String weight,String height,String age,String result){
+    public void insertData(String weight,String height,String result){
         SQLiteDatabase db=getWritableDatabase();
-        String insert_sql ="insert into history (weight,height,age,result,date) values " +
-                "('"+weight+"','"+height+"','"+age+"','"+result+"','"+getDate()+"')";
+        String insert_sql ="insert into history (weight,height,result,date) values " +
+                "('"+weight+"','"+height+"','"+result+"','"+getDate()+"')";
         db.execSQL(insert_sql);
 
     }
@@ -51,7 +53,7 @@ public class HistoryDatabase extends SQLiteOpenHelper {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
             list.add(new history(cursor.getInt(0),cursor.getString(1),cursor.getString(2),
-                    cursor.getString(3),cursor.getString(4),cursor.getString(5)));
+                    cursor.getString(3),cursor.getString(4)));
             cursor.moveToNext();
         }
         return list;

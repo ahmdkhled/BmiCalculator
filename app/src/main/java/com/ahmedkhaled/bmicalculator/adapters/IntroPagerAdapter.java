@@ -1,4 +1,4 @@
-package com.ahmedkhaled.bmicalculator;
+package com.ahmedkhaled.bmicalculator.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
